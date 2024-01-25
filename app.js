@@ -16,12 +16,7 @@ function verificarIntento(){
     intentos = parseInt(intentos);
     console.log(` Intentos: ${intentos}\n Numero Secreto : ${numeroSecreto} \n Numeros Sorteados: ${listNumerosSorteados}\n Número Usuario: ${numeroUsuario}` )
     console.log(typeof(intentos));
-    if (intentos > 2) {
-        console.log("El valor de intentos ya es mayor");
-        asignarTextoElemento('p', `El número secreto era ${numeroSecreto}, no pudiste averiguarlo en ${intentos} intento${intentos > 1 ? "s." : "."}`);
-        document.getElementById('intentar').setAttribute('disabled', true);
-        document.getElementById('reiniciar').removeAttribute('disabled');
-    } else if (numeroUsuario == numeroSecreto) {
+    if (numeroUsuario == numeroSecreto) {
         asignarTextoElemento('p', `Acertaste el número en ${intentos} intento${intentos > 1 ? "s." : "."}`);
         document.getElementById('intentar').setAttribute('disabled', true);
         document.getElementById('reiniciar').removeAttribute('disabled');
@@ -33,6 +28,12 @@ function verificarIntento(){
             asignarTextoElemento('p', `El número secreto es menor`);
         }
         intentos++;
+        if (intentos > 3) {
+            console.log("El valor de intentos ya es mayor");
+            asignarTextoElemento('p', `El número secreto era ${numeroSecreto}, no pudiste averiguarlo en ${intentos -1} intento${intentos > 1 ? "s." : "."}`);
+            document.getElementById('intentar').setAttribute('disabled', true);
+            document.getElementById('reiniciar').removeAttribute('disabled');
+        }
         limpiarCaja();
     }
     console.log(listNumerosSorteados);
